@@ -1,0 +1,220 @@
+[1mdiff --git a/Lab2CSharp/Program.cs b/Lab2CSharp/Program.cs[m
+[1mindex 602d6db..e263c2a 100644[m
+[1m--- a/Lab2CSharp/Program.cs[m
+[1m+++ b/Lab2CSharp/Program.cs[m
+[36m@@ -1,10 +1,212 @@[m
+[31m-﻿namespace Lab2CSharp[m
+[32m+[m[32m﻿using System;[m
+[32m+[m
+[32m+[m[32mnamespace LAB1[m
+ {[m
+[31m-    internal class Program[m
+[32m+[m[32m    class Program[m
+     {[m
+         static void Main(string[] args)[m
+         {[m
+[31m-            Console.WriteLine("Lab 2 CSharp");[m
+[32m+[m[32m            Console.WriteLine("lab 1. Choose task: ");[m
+[32m+[m[32m            Console.WriteLine("1. Task 1");[m
+[32m+[m[32m            Console.WriteLine("2. Task 2");[m
+[32m+[m[32m            Console.WriteLine("3. Task 3");[m
+[32m+[m[32m            Console.WriteLine("4. Task 4");[m
+[32m+[m[32m            Console.WriteLine("5. Exit");[m
+[32m+[m
+[32m+[m[32m            int choice;[m
+[32m+[m[32m            bool isValidChoice = false;[m
+[32m+[m
+[32m+[m[32m            do[m
+[32m+[m[32m            {[m
+[32m+[m[32m                Console.Write("Enter number of task: ");[m
+[32m+[m[32m                isValidChoice = int.TryParse(Console.ReadLine(), out choice);[m
+[32m+[m
+[32m+[m[32m                if (!isValidChoice || choice < 1 || choice > 5)[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    Console.WriteLine("Error: Invalid choice!");[m
+[32m+[m[32m                    isValidChoice = false;[m
+[32m+[m[32m                }[m
+[32m+[m[32m            } while (!isValidChoice);[m
+[32m+[m
+[32m+[m[32m            switch (choice)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                case 1:[m
+[32m+[m[32m                    Task1();[m
+[32m+[m[32m                    break;[m
+[32m+[m[32m                case 2:[m
+[32m+[m[32m                    Task2();[m
+[32m+[m[32m                    break;[m
+[32m+[m[32m                case 3:[m
+[32m+[m[32m                    Task3();[m
+[32m+[m[32m                    break;[m
+[32m+[m[32m                case 4:[m
+[32m+[m[32m                    Task4();[m
+[32m+[m[32m                    break;[m
+[32m+[m[32m                case 5:[m
+[32m+[m[32m                    Environment.Exit(0);[m
+[32m+[m[32m                    break;[m
+[32m+[m[32m            }[m
+         }[m
+[32m+[m
+[32m+[m[32m        static void Task1()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            Console.Write("Enter the size of the square array: ");[m
+[32m+[m[32m            int size = int.Parse(Console.ReadLine());[m
+[32m+[m
+[32m+[m[32m            int[,] array = new int[size, size];[m
+[32m+[m
+[32m+[m[32m            Console.WriteLine("Enter the elements of the array:");[m
+[32m+[m
+[32m+[m[32m            for (int i = 0; i < size; i++)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                for (int j = 0; j < size; j++)[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    Console.Write($"Element [{i},{j}]: ");[m
+[32m+[m[32m                    array[i, j] = int.Parse(Console.ReadLine());[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            Console.WriteLine("Indices of odd elements:");[m
+[32m+[m[32m            for (int i = 0; i < size; i++)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                for (int j = 0; j < size; j++)[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    if (array[i, j] % 2 != 0)[m
+[32m+[m[32m                    {[m
+[32m+[m[32m                        Console.WriteLine($"[{i},{j}]: {array[i, j]}");[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        static void Task2()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            Console.WriteLine("Enter the size of the array: ");[m
+[32m+[m[32m            int n = int.Parse(Console.ReadLine());[m
+[32m+[m[32m            int[] a = new int[n];[m
+[32m+[m[32m            for (int i = 0; i < n; ++i)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                Console.Write("a[{0}]= ", i);[m
+[32m+[m[32m                a[i] = int.Parse(Console.ReadLine());[m
+[32m+[m[32m            }[m
+[32m+[m[32m            int maxNeg = MaxNegative(a);[m
+[32m+[m
+[32m+[m[32m            if (maxNeg != 0)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                Console.WriteLine($"Maximum negative number: {maxNeg}");[m
+[32m+[m[32m            }[m
+[32m+[m[32m            else[m
+[32m+[m[32m            {[m
+[32m+[m[32m                Console.WriteLine("There are no negative numbers in the sequence.");[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        static int MaxNegative(int[] a)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            int maxNegative = int.MinValue;[m
+[32m+[m
+[32m+[m[32m            foreach (int num in a)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                if (num < 0 && num > maxNegative)[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    maxNegative = num;[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            if (maxNegative == int.MinValue)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                maxNegative = 0; // Якщо немає від'ємних чисел у послідовності[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            return maxNegative;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        static void PrintMatrix(int[,] matrix)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        int rowCount = matrix.GetLength(0);[m
+[32m+[m[32m        int colCount = matrix.GetLength(1);[m
+[32m+[m
+[32m+[m[32m        for (int i = 0; i < rowCount; i++)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            for (int j = 0; j < colCount; j++)[m
+[32m+[m[32m           {[m
+[32m+[m[32m                Console.Write($"{matrix[i, j],5}");[m[41m [m
+[32m+[m[32m            }[m
+[32m+[m[32m            Console.WriteLine();[m
+[32m+[m[32m        }[m
+[32m+[m[32m     }[m
+[32m+[m[32m       static void Task3()[m
+[32m+[m[32m    {[m
+[32m+[m[32m       int[,] array;[m
+[32m+[m[32m       int size;[m
+[32m+[m
+[32m+[m[32m       Console.Write("Enter the size of the square array: ");[m
+[32m+[m[32m       size = int.Parse(Console.ReadLine());[m
+[32m+[m
+[32m+[m[32m    // Ініціалізація масиву з введеним розміром[m
+[32m+[m[32m       array = new int[size, size];[m
+[32m+[m
+[32m+[m[32m    // Зчитування елементів масиву з клавіатури[m
+[32m+[m[32m       Console.WriteLine("Enter the elements of the array:");[m
+[32m+[m[32m       for (int i = 0; i < size; i++)[m
+[32m+[m[32m       {[m
+[32m+[m[32m           for (int j = 0; j < size; j++)[m
+[32m+[m[32m          {[m
+[32m+[m[32m            Console.Write($"Element [{i},{j}]: ");[m
+[32m+[m[32m            array[i, j] = int.Parse(Console.ReadLine());[m
+[32m+[m[32m           }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        PrintMatrix(array);[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        static void Task4()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        // Зчитуємо розмірність масиву з клавіатури[m
+[32m+[m[32m        Console.Write("Enter the number of rows in the array: ");[m
+[32m+[m[32m        int n = int.Parse(Console.ReadLine());[m
+[32m+[m
+[32m+[m[32m        // Оголошуємо початковий масив[m
+[32m+[m[32m        int[][] array = new int[n][];[m
+[32m+[m
+[32m+[m[32m        // Заповнюємо масив та рахуємо суму елементів кожного рядка[m
+[32m+[m[32m        for (int i = 0; i < n; i++)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            Console.Write($"Enter the number of elements in row {i + 1}: ");[m
+[32m+[m[32m            int m = int.Parse(Console.ReadLine());[m
+[32m+[m[32m            array[i] = new int[m];[m
+[32m+[m
+[32m+[m[32m            Console.WriteLine($"Enter {m} elements for row {i + 1}:");[m
+[32m+[m[32m            for (int j = 0; j < m; j++)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                array[i][j] = int.Parse(Console.ReadLine());[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // Оголошуємо новий масив для зберігання сум кожного рядка[m
+[32m+[m[32m        int[] sums = new int[n];[m
+[32m+[m
+[32m+[m[32m        // Обчислюємо суми елементів кожного рядка і зберігаємо їх у новому масиві[m
+[32m+[m[32m        for (int i = 0; i < n; i++)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            sums[i] = 0;[m
+[32m+[m[32m            for (int j = 0; j < array[i].Length; j++)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                sums[i] += array[i][j];[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // Знаходимо максимальний елемент у новому масиві[m
+[32m+[m[32m        int maxSum = sums[0];[m
+[32m+[m[32m        for (int i = 1; i < n; i++)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            if (sums[i] > maxSum)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                maxSum = sums[i];[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        Console.WriteLine($"The maximum sum of elements in a row is: {maxSum}");[m
+[32m+[m[32m    }[m
+     }[m
+ }[m
